@@ -1,0 +1,100 @@
+// COLUOR
+$-holder-norm: #496;
+$-holder-hover: darken($-holder-norm, 5);
+$-holder-active: darken($-holder-hover, 10);
+$-holder-o-win: #933;
+$-holder-x-win: #369;
+$-holder-o: lighten($-holder-o-win, 5);
+$-holder-x: lighten($-holder-x-win, 5);
+$-dark: #333;
+$-semi-dark: #444;
+$-light: #efefef;
+$-semi-light: #eee;
+
+// size:
+$-frame-size: 300px;
+
+// RESET's
+* {
+	padding: 0;
+	margin: 0;
+	z-index: 9;
+	box-sizing: border-box;
+	transition: .25s ease all;
+}
+
+html,body {
+	font-size: 16px;
+	font-family: 'ubuntu light', 'monospace','arial';
+	font-weight: 500;
+	background-color: $-light;
+	color: $-dark;
+}
+
+input, button, textarea {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+// STYLESHEET's
+
+body {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
+
+.frame {
+	width: $-frame-size;
+	height: $-frame-size;
+	margin: auto;
+	margin-top: 25px;
+	padding: .4rem;
+	border: 3px solid rgba($-semi-dark, .4);
+	border-radius: 1rem;
+	background-color: $-semi-light;
+
+	& {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		align-content: space-around;
+		justify-content: space-around;
+	}
+
+	> .placeholder {
+		width: ($-frame-size - 40) / 3;
+		height: ($-frame-size - 40) / 3;
+		border-radius: .5rem;
+		background-color: $-holder-norm;
+		color: $-light;
+
+		text-align: center;
+
+		> h1 {
+			padding: 0;
+			margin: 0;
+			font-size: 4rem
+		}
+
+		&[data-value="null"]:hover {
+			background-color: $-holder-hover;
+			cursor: pointer;
+			&:active,&:focus {
+				background-color: $-holder-active;
+				transform: scale(.9);
+			}
+		}
+		&[data-value="x"]{
+			background-color: $-holder-x;
+		}
+		&[data-value="o"]{
+			background-color: $-holder-o;
+		}
+	}
+}
