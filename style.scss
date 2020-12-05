@@ -1,15 +1,16 @@
 // COLUOR
-$-holder-norm: #496;
+$-holder-norm: #eee;
 $-holder-hover: darken($-holder-norm, 5);
 $-holder-active: darken($-holder-hover, 10);
-$-holder-o-win: #933;
-$-holder-x-win: #369;
-$-holder-o: lighten($-holder-o-win, 5);
-$-holder-x: lighten($-holder-x-win, 5);
+$-holder-o: #933;
+$-holder-x: #369;
+$-holder-draw: #9ca;
+$-holder-o-win: lighten($-holder-o, 25);
+$-holder-x-win: lighten($-holder-x, 25);
 $-dark: #333;
 $-semi-dark: #444;
 $-light: #efefef;
-$-semi-light: #eee;
+$-semi-light: #ddd;
 
 // size:
 $-frame-size: 300px;
@@ -27,7 +28,7 @@ html,body {
 	font-size: 16px;
 	font-family: 'ubuntu light', 'monospace','arial';
 	font-weight: 500;
-	background-color: $-light;
+	background-color: $-semi-light;
 	color: $-dark;
 }
 
@@ -46,19 +47,35 @@ body {
 	align-items: center;
 	align-content: center;
 	justify-content: center;
+
+	height: 100vh;
+
+	&.draw {
+		background-color: $-holder-draw;
+	}
+	&.x-won {
+		background-color: $-holder-x-win;
+	}
+	&.o-won {
+		background-color: $-holder-o-win;
+	}
 }
 
 .frame {
-	width: $-frame-size;
-	height: $-frame-size;
-	margin: auto;
-	margin-top: 25px;
-	padding: .4rem;
-	border: 3px solid rgba($-semi-dark, .4);
-	border-radius: 1rem;
-	background-color: $-semi-light;
+	position: relative;
 
 	& {
+		margin: auto;
+		// margin-top: 50px;
+		// border: 3px solid rgba($-semi-dark, .4);
+		overflow: hidden;
+	}
+
+	&, > .frame-items {
+		width: $-frame-size;
+		height: $-frame-size;
+		border-radius: 1rem;
+		// background-color: $-semi-light;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -67,34 +84,123 @@ body {
 		justify-content: space-around;
 	}
 
-	> .placeholder {
-		width: ($-frame-size - 40) / 3;
-		height: ($-frame-size - 40) / 3;
-		border-radius: .5rem;
-		background-color: $-holder-norm;
-		color: $-light;
+	> .frame-items {
+		> .placeholder {
+			width: ($-frame-size - 40) / 3;
+			height: ($-frame-size - 40) / 3;
+			border-radius: .5rem;
+			// background-color: $-holder-norm;
+			color: $-light;
 
-		text-align: center;
+			text-align: center;
+			cursor: default;
 
-		> h1 {
-			padding: 0;
-			margin: 0;
-			font-size: 4rem
-		}
+			> h1 {
+				padding: 0;
+				margin: 0;
+				font-size: 4rem
+			}
 
-		&[data-value="null"]:hover {
-			background-color: $-holder-hover;
-			cursor: pointer;
-			&:active,&:focus {
-				background-color: $-holder-active;
-				transform: scale(.9);
+			&[data-player="null"]:hover {
+				background-color: $-holder-hover;
+				cursor: pointer;
+				&:active,&:focus {
+					background-color: $-holder-active;
+					transform: scale(.9);
+				}
+			}
+			&[data-player="x"]{
+				color: $-holder-x;
+			}
+			&[data-player="o"]{
+				color: $-holder-o;
 			}
 		}
-		&[data-value="x"]{
-			background-color: $-holder-x;
+
+		> .won {
+			&[data-player="x"]{
+				background-color: $-holder-x-win;
+				// transform: rotate(45deg);
+			}
+			&[data-player="o"]{
+				background-color: $-holder-o-win;
+				// transform: rotate(45deg);
+			}
 		}
-		&[data-value="o"]{
-			background-color: $-holder-o;
+
+	}
+
+
+	> .frame-lines {
+		> .frame-line {
+			display: inline-block;
+			position: absolute;
+			background-color: $-dark;
+			border-radius: .5rem;
+
+			&.col {
+				top: 0;
+				width: 10px;
+				height: $-frame-size;
+				&#col-left {
+					left: ($-frame-size - 15) / 3;
+				}
+				&#col-right{
+					left: (($-frame-size * 2) - 15) / 3;
+				}
+			}
+			&.row {
+				left: 0;
+				width: $-frame-size;
+				height: 10px;
+				&#row-top {
+					top: ($-frame-size - 15) / 3;
+				}
+				&#row-bottom {
+					top: (($-frame-size * 2) - 15) / 3;
+				}
+			}
+		}
+	}
+}
+
+.modal {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+
+	& {
+		position: fixed;
+		top: 12%;
+		left: 12%;
+		width: 75%;
+		height: 75%;
+	}
+
+	border-radius: 1rem;
+	background-color: $-light;
+
+	> span {
+		display: block;
+		font-size: 2rem;
+		padding: 2rem;
+		text-decoration: underline 3px;
+		&.player {
+			padding: 3rem;
+			font-size: 6rem;
+			margin-bottom: 1rem;
+			text-decoration: none;
+			text-transform: capitalize;
+			color: darken($-holder-draw, 5);
+			&.x {
+				color: $-holder-x;
+			}
+			&.o {
+				color: $-holder-o;
+			}
 		}
 	}
 }
