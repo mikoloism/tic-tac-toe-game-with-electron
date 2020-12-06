@@ -7,11 +7,12 @@ document.onclick = async () => {
 		wav.audio = new Audio(wav.src);
 		mp3.audio = new Audio(mp3.src);
 		await mp3.audio.play();
-		window.setTimeout(() => {
+		let timeOute;
+		timeOute = window.setTimeout(() => {
 			mp3.audio.pause();
 			mp3.audio.currentTime = 0;
-		}, 150);
-		console.log('Play Done', {});
+		}, 2000);
+		window.clearTimeout(timeOute);
 	} catch (e) {
 		console.log('Error@');
 	}
