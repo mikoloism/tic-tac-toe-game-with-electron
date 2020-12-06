@@ -11,7 +11,7 @@ function createWindow() {
 		resizable: false,
 		alwaysOnTop: true,
 		autoHideMenuBar: true,
-		// icon: './assets/icon.jpeg',
+		icon: './assets/icon.png',
 		webPreferences: {
 			nodeIntegration: true,
 		},
@@ -23,9 +23,7 @@ function createWindow() {
 		main.setResizable(true);
 		main.setMaximizable(true);
 	});
-	ipcMain.handle('ExitApp', () => {
-		app.quit();
-	});
+	ipcMain.handle('ExitApp', () => app.quit());
 	main.loadFile('index.html');
 }
 
