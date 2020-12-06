@@ -20,6 +20,9 @@ const ready = (function () {
 		modal.innerHTML = '<span>player won</span>';
 		modal.appendChild(playerSpan);
 		document.body.appendChild(modal);
+		document
+			.getElementsByClassName('frame')
+			.item(0).style.transform = `scale(0)`;
 		playSound({
 			name: 'modal-sound-effect (4)',
 			duration: 350,
@@ -31,9 +34,10 @@ const ready = (function () {
 				duration: 500,
 				volume: 0.7,
 			});
+			modal.classList.add('scale-fade-out');
 			window.setTimeout(() => {
 				hideModal();
-			}, 1000);
+			}, 350);
 		};
 	};
 
