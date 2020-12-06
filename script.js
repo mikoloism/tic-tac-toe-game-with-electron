@@ -20,7 +20,21 @@ const ready = (function () {
 		modal.innerHTML = '<span>player won</span>';
 		modal.appendChild(playerSpan);
 		document.body.appendChild(modal);
-		modal.onclick = hideModal;
+		playSound({
+			name: 'modal-sound-effect (4)',
+			duration: 350,
+			volume: 0.7,
+		});
+		modal.onclick = function () {
+			playSound({
+				name: 'modal-sound-effect (1)',
+				duration: 500,
+				volume: 0.7,
+			});
+			window.setTimeout(() => {
+				hideModal();
+			}, 1000);
+		};
 	};
 
 	const setDraw = () => {
@@ -115,12 +129,19 @@ const ready = (function () {
 
 			if (String(e.key).toLowerCase() == 'enter') next.holder.focus();
 		});
+		holder.onmouseenter = function () {
+			this.classList.add(`hover-${player == 'x' ? 'o' : 'x'}`);
+		};
+		holder.onmouseleave = function () {
+			this.classList.remove(`hover-${player == 'x' ? 'o' : 'x'}`);
+		};
 		function updatePlayerState() {
 			if (this.dataset.player === 'null') {
+				playSound({ name: 'click-sound-effect', duration: 100 });
 				player = player === 'o' ? 'x' : 'o';
 				updateText(this, player);
 				checkHolders();
-			}
+			} else playSound({ name: 'click-denied-sound', duration: 500 });
 		}
 	});
 })();
