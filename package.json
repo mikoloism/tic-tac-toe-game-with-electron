@@ -1,0 +1,19 @@
+{
+  "name": "xo-game",
+  "version": "0.1.1",
+  "description": "tiktoktoe game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "tik-tok-toe",
+    "game",
+    "xo"
+  ],
+  "author": "miko",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^11.0.3"
+  }
+}
