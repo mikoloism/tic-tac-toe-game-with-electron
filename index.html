@@ -4,20 +4,32 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, init-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="./style.css" />
-		<script src="./script.js" type="text/javascript" charset="utf-8" async defer></script>
+		<script
+			src="./script.js"
+			type="text/javascript"
+			charset="utf-8"
+			async
+			defer
+		></script>
 	</head>
 	<body>
+		<div id="context-menu" class="context-menu">
+			<ul>
+				<li><span>Restart</span></li>
+				<li><span>Disabled</span></li>
+			</ul>
+		</div>
 		<div class="frame">
 			<div class="frame-items">
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
-				<div class="placeholder" data-player="null"></div>
+				<div tabindex="0" class="placeholder" data-player="null"></div>
+				<div tabindex="1" class="placeholder" data-player="null"></div>
+				<div tabindex="2" class="placeholder" data-player="null"></div>
+				<div tabindex="3" class="placeholder" data-player="null"></div>
+				<div tabindex="4" class="placeholder" data-player="null"></div>
+				<div tabindex="5" class="placeholder" data-player="null"></div>
+				<div tabindex="6" class="placeholder" data-player="null"></div>
+				<div tabindex="7" class="placeholder" data-player="null"></div>
+				<div tabindex="8" class="placeholder" data-player="null"></div>
 			</div>
 			<div class="frame-lines">
 				<div class="frame-line row" id="row-top"></div>
