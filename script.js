@@ -88,12 +88,40 @@ const ready = (function () {
 		clickedElement.dataset.player = whichPlayer;
 	};
 	Array.from(placeholders).forEach((holder) => {
-		holder.onclick = function () {
+		holder.onclick = updatePlayerState;
+		holder.addEventListener('keydown', function (e) {
+			e = window.event ? window.event : e;
+			const current = {
+					holder: this,
+					index: Number(this.getAttribute('tabindex')),
+				},
+				next = {}; // holder, index
+			if (e.keyCode == '38')
+				next.index =
+					current.index - 3 < 0
+						? current.index + 6 // (curIndex - 3) + 9
+						: current.index - 3;
+			if (e.keyCode == '39')
+				next.index = current.index - 1 < 0 ? 8 : current.index - 1;
+			if (e.keyCode == '40')
+				next.index =
+					current.index + 3 > 8
+						? current.index - 6 // (curIndex + 3) - 9
+						: current.index + 3;
+			if (e.keyCode == '37')
+				next.index = current.index + 1 > 8 ? 0 : current.index + 1;
+
+			next.holder = placeholders[next.index];
+
+			if (String(e.key).toLowerCase() == 'enter') next.holder.focus();
+			console.log({ next, current });
+		});
+		function updatePlayerState() {
 			if (this.dataset.player === 'null') {
 				player = player === 'o' ? 'x' : 'o';
 				updateText(this, player);
 				checkHolders();
 			}
-		};
+		}
 	});
 })();
