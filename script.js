@@ -114,7 +114,6 @@ const ready = (function () {
 			next.holder = placeholders[next.index];
 
 			if (String(e.key).toLowerCase() == 'enter') next.holder.focus();
-			console.log({ next, current });
 		});
 		function updatePlayerState() {
 			if (this.dataset.player === 'null') {
