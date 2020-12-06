@@ -19,6 +19,13 @@ function createWindow() {
 	const main = new BrowserWindow(winOption);
 	ipcMain.handle('ToggleDevTools', () => main.webContents.toggleDevTools());
 	ipcMain.handle('RefreshWindow', () => main.reload());
+	ipcMain.handle('FullScreenWindow', () => {
+		main.setResizable(true);
+		main.setMaximizable(true);
+	});
+	ipcMain.handle('ExitApp', () => {
+		app.quit();
+	});
 	main.loadFile('index.html');
 }
 
