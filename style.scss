@@ -203,10 +203,10 @@ body {
 
 	& {
 		position: fixed;
-		top: 12%;
-		left: 12%;
-		width: 75%;
-		height: 75%;
+		top: 5%;
+		left: 5%;
+		width: 90%;
+		height: 90%;
 	}
 
 	& {
@@ -220,6 +220,20 @@ body {
 			to,
 			100% {
 				transform: scale(1);
+			}
+		}
+	}
+	&.scale-fade-out {
+		animation: scale-fade-out 0.25s 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+			both alternate;
+		@keyframes scale-fade-out {
+			from,
+			0% {
+				transform: scale(1);
+			}
+			to,
+			100% {
+				transform: scale(0);
 			}
 		}
 	}
