@@ -1,12 +1,14 @@
 // COLUOR
 $-holder-norm: #eee;
-$-holder-hover: darken($-holder-norm, 5);
-$-holder-active: darken($-holder-hover, 10);
+$-holder-hover: darken($-holder-norm, 25);
+$-holder-active: lighten($-holder-hover, 10);
 $-holder-o: #933;
 $-holder-x: #369;
 $-holder-draw: #9ca;
 $-holder-o-win: lighten($-holder-o, 25);
 $-holder-x-win: lighten($-holder-x, 25);
+$-holder-hover-o: darken($-holder-o, 25);
+$-holder-hover-x: darken($-holder-x, 25);
 $-dark: #333;
 $-semi-dark: #444;
 $-light: #efefef;
@@ -21,18 +23,23 @@ $-frame-size: 300px;
 	margin: 0;
 	z-index: 9;
 	box-sizing: border-box;
-	transition: .25s ease all;
+	transition: 0.25s ease all;
 }
 
-html,body {
+html,
+body {
 	font-size: 16px;
-	font-family: 'ubuntu light', 'monospace','arial';
+	font-family: 'ubuntu light', 'monospace', 'arial';
 	font-weight: 500;
 	background-color: $-semi-light;
 	color: $-dark;
+	user-select: none;
 }
 
-input, button, textarea {
+input,
+button,
+textarea,
+* {
 	border: none;
 	outline: none;
 	box-shadow: none;
@@ -49,6 +56,7 @@ body {
 	justify-content: center;
 
 	height: 100vh;
+	overflow: hidden;
 
 	&.draw {
 		background-color: $-holder-draw;
@@ -71,7 +79,8 @@ body {
 		overflow: hidden;
 	}
 
-	&, > .frame-items {
+	&,
+	> .frame-items {
 		width: $-frame-size;
 		height: $-frame-size;
 		border-radius: 1rem;
@@ -88,7 +97,7 @@ body {
 		> .placeholder {
 			width: ($-frame-size - 40) / 3;
 			height: ($-frame-size - 40) / 3;
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 			// background-color: $-holder-norm;
 			color: $-light;
 
@@ -98,45 +107,65 @@ body {
 			> h1 {
 				padding: 0;
 				margin: 0;
-				font-size: 4rem
+				margin-top: -1.5rem;
+				font-size: 6.5rem;
 			}
 
-			&[data-player="null"]:hover {
+			&[data-player='null']:hover {
 				background-color: $-holder-hover;
 				cursor: pointer;
-				&:active,&:focus {
+				// &.hover-o {
+				// 	background-color: $-holder-hover-o;
+				// }
+				// &.hover-x {
+				// 	background-color: $-holder-hover-x;
+				// }
+				&:active,
+				&:focus {
 					background-color: $-holder-active;
-					transform: scale(.9);
+					transform: scale(0.9);
 				}
 			}
-			&[data-player="x"]{
-				color: $-holder-x;
+			&:focus {
+				background-color: $-holder-active;
+				transform: scale(0.9);
 			}
-			&[data-player="o"]{
+			&[data-player='x'] {
+				color: $-holder-x;
+				&:focus {
+					// background-color: $-holder-hover-x;
+					background-color: transparent;
+					transform: scale(1);
+				}
+			}
+			&[data-player='o'] {
 				color: $-holder-o;
+				&:focus {
+					// background-color: $-holder-hover-o;
+					background-color: transparent;
+					transform: scale(1);
+				}
 			}
 		}
 
 		> .won {
-			&[data-player="x"]{
+			&[data-player='x'] {
 				background-color: $-holder-x-win;
 				// transform: rotate(45deg);
 			}
-			&[data-player="o"]{
+			&[data-player='o'] {
 				background-color: $-holder-o-win;
 				// transform: rotate(45deg);
 			}
 		}
-
 	}
-
 
 	> .frame-lines {
 		> .frame-line {
 			display: inline-block;
 			position: absolute;
 			background-color: $-dark;
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 
 			&.col {
 				top: 0;
@@ -145,7 +174,7 @@ body {
 				&#col-left {
 					left: ($-frame-size - 15) / 3;
 				}
-				&#col-right{
+				&#col-right {
 					left: (($-frame-size * 2) - 15) / 3;
 				}
 			}
@@ -197,10 +226,21 @@ body {
 			color: darken($-holder-draw, 5);
 			&.x {
 				color: $-holder-x;
+				text-shadow: 0.1rem 0.1rem 0.9rem $-holder-x;
 			}
 			&.o {
 				color: $-holder-o;
+				text-shadow: 0.1rem 0.1rem 0.9rem $-holder-o;
 			}
 		}
 	}
+}
+
+.context-menu {
+	position: fixed;
+	width: 100px;
+	height: 100px;
+	// top: -50%;
+	// left: -50%;
+	display: inline-block;
 }
