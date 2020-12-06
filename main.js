@@ -1,9 +1,14 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const electron = require('electron');
+const { app, BrowserWindow, ipcMain } = electron;
 
 function createWindow() {
 	const winOption = {
 		width: 350,
-		height: 500,
+		height: 370,
+		minWidth: 310,
+		minHeight: 320,
+		maximizable: false,
+		resizable: false,
 		alwaysOnTop: true,
 		autoHideMenuBar: true,
 		// icon: './assets/icon.jpeg',
@@ -12,6 +17,8 @@ function createWindow() {
 		},
 	};
 	const main = new BrowserWindow(winOption);
+	ipcMain.handle('ToggleDevTools', () => main.webContents.toggleDevTools());
+	ipcMain.handle('RefreshWindow', () => main.reload());
 	main.loadFile('index.html');
 }
 
