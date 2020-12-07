@@ -1,24 +1,36 @@
 const electron = require('electron');
 const { ipcRenderer } = electron;
 
-document.addEventListener('keydown', (e) => {
-	e = window.event ? window.event : e;
-	if (e.key == 'F1' || e.keyCode == 112) {
-		ipcRenderer.invoke('ToggleDevTools');
-	}
-	if (e.key == 'F5' || e.keyCode == 116) {
-		ipcRenderer.invoke('RefreshWindow');
-	}
-	if (e.key == 'F11' || e.keyCode == 122) {
-		ipcRenderer.invoke('FullScreenWindow');
-	}
-	if (e.key == 'Escape' || e.keyCode == 27) ipcRenderer.invoke('ExitApp');
-});
-document.addEventListener('mousedown', (e) => {
-	if (e.button == 2) {
-		let { offsetX, offsetY } = e;
-		const contextMenu = document.getElementById('context-menu');
-		contextMenu.style.left = `${offsetX}px`;
-		contextMenu.style.top = `${offsetY}px`;
-	}
-});
+function shortKey(
+	{
+		name: keyName,
+		code: keyCode,
+		num: keyNumber,
+		element = document,
+		alt = false,
+		shift = false,
+		ctrl = false,
+	} = {},
+	callback,
+) {
+	return element.addEventListener('keypress', function (e) {
+		const mainIf =
+			String(keyName).toLowerCase() === String(e.key).toLowerCase() ||
+			String(keyCode).toLowerCase() === String(e.code).toLowerCase() ||
+			Number(keyNumber) === Number(e.keyCode)
+				? callback()
+				: undefined;
+
+		if (ctrl && e.ctrlKey) return mainIf;
+		if (shift && e.shiftKey) return mainIf;
+		if (alt && e.altKey) return mainIf;
+		return mainIf;
+	});
+}
+
+shortKey({ name: 'F1', num: 112 }, () => ipcRenderer.invoke('ToggleDevTools'));
+shortKey({ name: 'F5', num: 116 }, () => ipcRenderer.invoke('RefreshWindow'));
+shortKey({ name: 'F11', num: 122 }, () =>
+	ipcRenderer.invoke('FullScreenWindow'),
+);
+shortKey({ name: 'Escape', number: 27 }, () => ipcRenderer.invoke('ExitApp'));
