@@ -24,6 +24,7 @@ function createWindow() {
 		main.setMaximizable(true);
 	});
 	ipcMain.handle('ExitApp', () => app.quit());
+	ipcMain.handle('LoadUpdateWindow', () => main.loadFile('update.html'));
 	main.loadFile('index.html');
 }
 
