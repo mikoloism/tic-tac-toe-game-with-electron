@@ -1,4 +1,10 @@
 const ready = (function () {
+	// playSound({
+	// 	name: 'background-music',
+	// 	loop: true,
+	// 	volume: 0.4,
+	// 	duration: false,
+	// });
 	let placeholders = document.getElementsByClassName('placeholder');
 	let player = 'o';
 	let won = null;
