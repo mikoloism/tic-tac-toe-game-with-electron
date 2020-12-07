@@ -1,0 +1,178 @@
+// COLUOR
+$-holder-norm: #eee;
+$-holder-hover: darken($-holder-norm, 25);
+$-holder-active: lighten($-holder-hover, 10);
+$-holder-o: lighten(#933, 15);
+$-holder-x: #369;
+$-holder-draw: #9ca;
+$-holder-o-win: lighten($-holder-o, 10);
+$-holder-x-win: lighten($-holder-x, 25);
+$-holder-o-body: darken($-holder-o, 15);
+$-holder-x-body: darken($-holder-x, 25);
+$-holder-hover-o: lighten($-holder-o, 5);
+$-holder-hover-x: lighten($-holder-x, 25);
+$-dark: #333;
+$-semi-dark: #444;
+$-light: #efefef;
+$-semi-light: #ddd;
+
+// size:
+$-frame-size: 300px;
+
+// RESET's
+* {
+	padding: 0;
+	margin: 0;
+	z-index: 9;
+	box-sizing: border-box;
+	transition: 0.25s ease all;
+}
+
+html,
+body {
+	font-size: 16px;
+	font-family: 'ubuntu light', 'monospace', 'arial';
+	font-weight: 500;
+	background-color: $-semi-light;
+	color: $-dark;
+	user-select: none;
+}
+
+input,
+button,
+textarea,
+* {
+	border: none;
+	outline: none;
+	box-shadow: none;
+}
+
+// STYLESHEET's
+
+body {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+
+	height: 100vh;
+	overflow: hidden;
+
+	&.draw {
+		background-color: $-holder-draw;
+	}
+	&.x-won {
+		background-color: $-holder-x-body;
+	}
+	&.o-won {
+		background-color: $-holder-o-body;
+	}
+}
+
+.pade {
+	width: 75vw;
+	height: 75vh;
+	max-width: 500px;
+	max-height: 500px;
+	> .holders {
+		&,
+		.row,
+		.col {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+		}
+
+		& {
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+		}
+
+		> .row {
+			width: 100%;
+			height: 33.3%;
+
+			> .col {
+				width: 33.3%;
+				height: 100%;
+				&:hover {
+					background-color: $-holder-hover;
+				}
+				&:focus {
+					background-color: $-holder-hover-x;
+				}
+				&:focus-within {
+					background-color: $-holder-hover-o;
+				}
+			}
+		}
+	}
+
+	> .holders {
+		// .cell[data-col='2'] {
+		// &,
+		// &[data-row='2'] {
+		.cell {
+			border: 3px solid $-semi-dark;
+		}
+		// }
+
+		// border-bottom: none;
+		// border-top: none;
+		// }
+		// .cell[data-row='2'] {
+		// border-left: none;
+		// border-right: none;
+		// }
+	}
+
+	// > .holders {
+	// 	position: relative;
+
+	// 	> .gap-line {
+	// 		&,
+	// 		&::after {
+	// 			display: inline-block;
+	// 			position: absolute;
+	// 			border-radius: 5rem;
+	// 			background-color: $-semi-dark;
+	// 		}
+
+	// 		& {
+	// 			left: 0;
+	// 			right: 0;
+	// 			height: 5px;
+	// 			width: 90%;
+	// 		}
+
+	// 		&::after {
+	// 			content: '';
+	// 			top: 0;
+	// 			bottom: 0;
+	// 			width: 5px;
+	// 			height: 75vh;
+	// 			max-height: 500px;
+	// 		}
+
+	// 		&#gap-1 {
+	// 			top: 32%;
+
+	// 			&::after {
+	// 				transform: translateY(-32%);
+	// 				left: 32%;
+	// 			}
+	// 		}
+	// 		&#gap-2 {
+	// 			top: 65%;
+
+	// 			&::after {
+	// 				transform: translateY(-65%);
+	// 				left: 65%;
+	// 			}
+	// 		}
+	// 	}
+	// }
+}
