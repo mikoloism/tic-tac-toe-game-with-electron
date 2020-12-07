@@ -98,20 +98,45 @@ body {
 			width: ($-frame-size - 40) / 3;
 			height: ($-frame-size - 40) / 3;
 			border-radius: 0.5rem;
+			position: relative;
 			// background-color: $-holder-norm;
-			color: $-light;
 
 			text-align: center;
 			cursor: default;
 
-			> h1 {
-				padding: 0;
-				margin: 0;
-				margin-top: -1.5rem;
-				font-size: 6.5rem;
+			> span {
+				display: inline-block;
+				position: absolute;
+				background-color: $-dark;
+				transform: scale(0);
+				transform: rotate(60deg);
 
-				text-shadow: -1px -1px 0 $-light, 1px -1px 0 $-light,
-					-1px 1px 0 $-light, 1px 1px 0 $-light;
+				&.o-shape {
+					border-radius: 5rem;
+					background-color: $-holder-o;
+					top: 5%;
+					left: 5%;
+					width: 90%;
+					height: 90%;
+					&:nth-of-type(2) {
+						width: 50%;
+						height: 50%;
+						top: 25%;
+						left: 25%;
+						background-color: $-semi-light;
+					}
+				}
+
+				&.x-shape {
+					border-radius: 0.5rem;
+					background-color: $-holder-x;
+					width: 25%;
+					height: 100%;
+					transform: translate(-50%, 0) rotate(45deg);
+					&:nth-of-type(2) {
+						transform: translate(-50%, 0) rotate(-45deg);
+					}
+				}
 			}
 
 			&[data-player='null']:hover {
