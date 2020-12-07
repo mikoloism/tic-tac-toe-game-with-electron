@@ -10,10 +10,7 @@ const ready = (function () {
 	let won = null;
 
 	const hideModal = () => {
-		restart();
-	};
-	const restart = () => {
-		location.reload();
+		doRestart();
 	};
 	const showModal = (whoWon) => {
 		let modal = document.createElement('div');
@@ -41,9 +38,7 @@ const ready = (function () {
 				volume: 0.7,
 			});
 			modal.classList.add('scale-fade-out');
-			window.setTimeout(() => {
-				hideModal();
-			}, 350);
+			window.setTimeout(hideModal, 250);
 		};
 	};
 
@@ -59,12 +54,12 @@ const ready = (function () {
 		if (players.length === 0 && won === null) setDraw();
 	};
 
-	const checkWon = (items, whichPlayer) => {
+	const checkWon = (items, player) => {
 		let [i1, i2, i3] = items;
 		if (
-			placeholders[i1].dataset.player === whichPlayer &&
-			placeholders[i2].dataset.player === whichPlayer &&
-			placeholders[i3].dataset.player === whichPlayer &&
+			placeholders[i1].dataset.player === player &&
+			placeholders[i2].dataset.player === player &&
+			placeholders[i3].dataset.player === player &&
 			placeholders[i1].dataset.player ===
 				placeholders[i3].dataset.player &&
 			placeholders[i1].dataset.player ===
@@ -74,9 +69,14 @@ const ready = (function () {
 			placeholders[i1].classList.add('won');
 			placeholders[i2].classList.add('won');
 			placeholders[i3].classList.add('won');
-			won = whichPlayer;
+			won = player;
 			document.body.classList.add(`${won}-won`);
-			showModal(won);
+			Array.from(placeholders).forEach((h) => (h.onclick = null));
+			document
+				.getElementsByClassName('frame-items')
+				.item(0)
+				.classList.add('disable');
+			window.setTimeout(() => showModal(won), 1300);
 		} else checkDraw();
 	};
 	const checkHolders = () => {
@@ -105,14 +105,14 @@ const ready = (function () {
 		checkWon([2, 5, 8], 'o');
 	};
 
-	const updateText = (clickedElement, whichPlayer) => {
+	const appendShape = (holder, player) => {
 		let span1 = document.createElement('span');
 		let span2 = document.createElement('span');
-		clickedElement.appendChild(span1);
-		clickedElement.appendChild(span2);
-		span1.classList.add(`${whichPlayer}-shape`);
-		span2.classList.add(`${whichPlayer}-shape`);
-		clickedElement.dataset.player = whichPlayer;
+		holder.appendChild(span1);
+		holder.appendChild(span2);
+		span1.classList.add(`${player}-shape`);
+		span2.classList.add(`${player}-shape`);
+		holder.dataset.player = player;
 	};
 	Array.from(placeholders).forEach((holder) => {
 		holder.onclick = updatePlayerState;
@@ -152,7 +152,7 @@ const ready = (function () {
 			if (this.dataset.player === 'null') {
 				playSound({ name: 'click-sound-effect', duration: 100 });
 				player = player === 'o' ? 'x' : 'o';
-				updateText(this, player);
+				appendShape(this, player);
 				checkHolders();
 			} else playSound({ name: 'click-denied-sound', duration: 500 });
 		}
