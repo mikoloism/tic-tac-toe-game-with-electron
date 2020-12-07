@@ -2,12 +2,14 @@
 $-holder-norm: #eee;
 $-holder-hover: darken($-holder-norm, 25);
 $-holder-active: lighten($-holder-hover, 10);
-$-holder-o: #933;
+$-holder-o: lighten(#933, 15);
 $-holder-x: #369;
 $-holder-draw: #9ca;
-$-holder-o-win: lighten($-holder-o, 25);
+$-holder-o-win: lighten($-holder-o, 10);
 $-holder-x-win: lighten($-holder-x, 25);
-$-holder-hover-o: lighten($-holder-o, 25);
+$-holder-o-body: darken($-holder-o, 15);
+$-holder-x-body: darken($-holder-x, 25);
+$-holder-hover-o: lighten($-holder-o, 5);
 $-holder-hover-x: lighten($-holder-x, 25);
 $-dark: #333;
 $-semi-dark: #444;
@@ -62,10 +64,10 @@ body {
 		background-color: $-holder-draw;
 	}
 	&.x-won {
-		background-color: $-holder-x-win;
+		background-color: $-holder-x-body;
 	}
 	&.o-won {
-		background-color: $-holder-o-win;
+		background-color: $-holder-o-body;
 	}
 }
 
@@ -149,40 +151,42 @@ body {
 					}
 				}
 			}
+		}
 
-			&[data-player='null']:hover {
-				background-color: $-holder-hover;
-				cursor: pointer;
-				&.hover-o {
-					background-color: $-holder-hover-o;
+		&:not(.disable) {
+			> .placeholder {
+				&[data-player='null']:hover {
+					background-color: $-holder-hover;
+					cursor: pointer;
+					&.hover-o {
+						background-color: $-holder-hover-o;
+					}
+					&.hover-x {
+						background-color: $-holder-hover-x;
+					}
+					&:active,
+					&:focus {
+						background-color: $-holder-active;
+						transform: scale(0.9);
+					}
 				}
-				&.hover-x {
-					background-color: $-holder-hover-x;
-				}
-				&:active,
 				&:focus {
 					background-color: $-holder-active;
 					transform: scale(0.9);
 				}
-			}
-			&:focus {
-				background-color: $-holder-active;
-				transform: scale(0.9);
-			}
-			&[data-player='x'] {
-				color: $-holder-x;
-				&:focus {
-					// background-color: $-holder-hover-x;
-					background-color: transparent;
-					transform: scale(1);
+				&[data-player='x'] {
+					&:focus {
+						// background-color: $-holder-hover-x;
+						background-color: transparent;
+						transform: scale(1);
+					}
 				}
-			}
-			&[data-player='o'] {
-				color: $-holder-o;
-				&:focus {
-					// background-color: $-holder-hover-o;
-					background-color: transparent;
-					transform: scale(1);
+				&[data-player='o'] {
+					&:focus {
+						// background-color: $-holder-hover-o;
+						background-color: transparent;
+						transform: scale(1);
+					}
 				}
 			}
 		}
