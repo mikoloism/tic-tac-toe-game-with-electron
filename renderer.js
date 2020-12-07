@@ -6,25 +6,21 @@ function shortKey(
 		name: keyName,
 		code: keyCode,
 		num: keyNumber,
-		element = document,
 		alt = false,
 		shift = false,
 		ctrl = false,
 	} = {},
 	callback,
 ) {
-	return element.addEventListener('keypress', function (e) {
-		const mainIf =
-			String(keyName).toLowerCase() === String(e.key).toLowerCase() ||
-			String(keyCode).toLowerCase() === String(e.code).toLowerCase() ||
-			Number(keyNumber) === Number(e.keyCode)
-				? callback()
-				: undefined;
+	document.addEventListener('keydown', function (e) {
+		const keyCheck =
+			keyName === e.key || keyCode === e.code || keyNumber === e.keyCode;
 
-		if (ctrl && e.ctrlKey) return mainIf;
-		if (shift && e.shiftKey) return mainIf;
-		if (alt && e.altKey) return mainIf;
-		return mainIf;
+		if (ctrl && e.ctrlKey && keyCheck) return callback();
+		if (shift && e.shiftKey && keyCheck) return callback();
+		if (alt && e.altKey && keyCheck) return callback();
+		if (!alt && !shift && !ctrl && keyCheck) return callback();
+		return undefined;
 	});
 }
 
