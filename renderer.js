@@ -25,8 +25,12 @@ function shortKey(
 }
 
 shortKey({ name: 'F1', num: 112 }, () => ipcRenderer.invoke('ToggleDevTools'));
-shortKey({ name: 'F5', num: 116 }, () => ipcRenderer.invoke('RefreshWindow'));
+const doRestart = () => ipcRenderer.invoke('RefreshWindow');
+shortKey({ name: 'F5', num: 116 }, doRestart);
 shortKey({ name: 'F11', num: 122 }, () =>
 	ipcRenderer.invoke('FullScreenWindow'),
+);
+shortKey({ name: 'n', alt: true }, () =>
+	ipcRenderer.invoke('LoadUpdateWindow'),
 );
 shortKey({ name: 'Escape', number: 27 }, () => ipcRenderer.invoke('ExitApp'));
