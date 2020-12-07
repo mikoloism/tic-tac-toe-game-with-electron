@@ -106,9 +106,12 @@ const ready = (function () {
 	};
 
 	const updateText = (clickedElement, whichPlayer) => {
-		let span = document.createElement('h1');
-		span.innerHTML = whichPlayer;
-		clickedElement.appendChild(span);
+		let span1 = document.createElement('span');
+		let span2 = document.createElement('span');
+		clickedElement.appendChild(span1);
+		clickedElement.appendChild(span2);
+		span1.classList.add(`${whichPlayer}-shape`);
+		span2.classList.add(`${whichPlayer}-shape`);
 		clickedElement.dataset.player = whichPlayer;
 	};
 	Array.from(placeholders).forEach((holder) => {
