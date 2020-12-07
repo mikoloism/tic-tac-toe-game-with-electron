@@ -69,6 +69,17 @@ body {
 	}
 }
 
+// body,
+// html {
+// 	background-color: #f0f2f5;
+// 	background-image: url('./assets/bg-snell.png');
+// 	background-repeat: no-repeat;
+// 	background-size: cover;
+// 	background-position: 100%;
+// 	height: 100vh;
+// 	text-rendering: optimizeLegibility;
+// }
+
 .frame {
 	position: relative;
 
@@ -292,14 +303,4 @@ body {
 			}
 		}
 	}
-}
-
-.context-menu {
-	position: fixed;
-	width: 100px;
-	height: 100px;
-	// top: -50%;
-	// left: -50%;
-	display: inline-block;
-	display: none;
 }
