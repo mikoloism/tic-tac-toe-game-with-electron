@@ -9,14 +9,10 @@
 
 ## Shortcuts
 
-| Key | Description |
+
+| Keys | `F1` | `F5` | `F11` | `F12` | `Alt` + `N` | `Esc` |
 | --- | --- |
-| `F1` | Show Info |
-| `F5` | Restart Game |
-| `F11` | Toggle Fullscreen Mode |
-| `F12` | DevTools |
-| `Alt` + `N` | New Version (coming soons) |
-| `Esc` | Close Game and Exit Window |
+| Description |Show Info |Restart Game |Toggle Fullscreen Mode | DevTools | New Version (coming soons) | Close Game and Exit Window |
 
 [⬆️ top](#menu)
 
