@@ -1,4 +1,9 @@
-# Electron-js Tic-Tac-Toe Game
+# Tic-Tac-Toe (XO) Game
+> built-with @electron
+
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/electron)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/node-sass)
+![GitHub](https://img.shields.io/github/license/miko-github/tic-tac-toe-game-with-electron)
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/open-source.svg)
