@@ -6,7 +6,7 @@
 		{
 			"label": "Electron [compile sass/scss files]",
 			"type": "shell",
-			"command": ""
+			"command": "sass --watch --no-source-map src/styles/scss/main.scss:src/styles/main.css"
 		},
 		{
 			"label": "Electron [run electron]",

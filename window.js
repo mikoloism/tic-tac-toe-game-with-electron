@@ -24,6 +24,9 @@ function createWindow() {
 		main.setMaximizable(true);
 	});
 	ipcMain.handle('ExitApp', () => app.quit());
+	ipcMain.handle('ToggleAbout', () =>
+		main.loadFile('./src/views/about.html'),
+	);
 	ipcMain.handle('LoadUpdateWindow', () =>
 		main.loadFile('./src/views/update.html'),
 	);

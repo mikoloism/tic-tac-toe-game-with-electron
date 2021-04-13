@@ -24,7 +24,8 @@ function shortKey(
 	});
 }
 
-shortKey({ name: 'F1', num: 112 }, () => ipcRenderer.invoke('ToggleDevTools'));
+shortKey({ name: 'F1', num: 112 }, () => ipcRenderer.invoke('ToggleAbout'));
+shortKey({ name: 'F12', num: 123 }, () => ipcRenderer.invoke('ToggleDevTools'));
 const doRestart = () => ipcRenderer.invoke('RefreshWindow');
 shortKey({ name: 'F5', num: 116 }, doRestart);
 shortKey({ name: 'F11', num: 122 }, () =>
