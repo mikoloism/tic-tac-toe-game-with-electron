@@ -3,8 +3,8 @@
 >
 > with sound effect
 
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/electron)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/node-sass)
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/electron)](https://github.com/electron/electron)
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/miko-github/tic-tac-toe-game-with-electron/node-sass)](https://github.com/sass/node-sass)
 ![GitHub repo size](https://img.shields.io/github/repo-size/miko-github/tic-tac-toe-game-with-electron)
 [![GitHub](https://img.shields.io/github/license/miko-github/tic-tac-toe-game-with-electron)](./LICENSE)
 
