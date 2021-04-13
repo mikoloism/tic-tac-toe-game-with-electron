@@ -11,7 +11,7 @@ function createWindow() {
 		resizable: false,
 		alwaysOnTop: true,
 		autoHideMenuBar: true,
-		icon: './assets/icon.png',
+		icon: './assets/images/icon.png',
 		webPreferences: {
 			nodeIntegration: true,
 		},
@@ -24,8 +24,10 @@ function createWindow() {
 		main.setMaximizable(true);
 	});
 	ipcMain.handle('ExitApp', () => app.quit());
-	ipcMain.handle('LoadUpdateWindow', () => main.loadFile('update.html'));
-	main.loadFile('index.html');
+	ipcMain.handle('LoadUpdateWindow', () =>
+		main.loadFile('./src/views/update.html'),
+	);
+	main.loadFile('./src/views/index.html');
 }
 
 app.whenReady().then(createWindow);

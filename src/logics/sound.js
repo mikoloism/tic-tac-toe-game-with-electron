@@ -5,7 +5,7 @@ const playSound = ({
 	volume = 1,
 	loop = false,
 } = {}) => {
-	const audio = new Audio(`./assets/${name}.${format}`);
+	const audio = new Audio(`./../../assets/audios/${name}.${format}`);
 	audio.play();
 	audio.volume = volume;
 	audio.loop = loop;
