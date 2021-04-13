@@ -1,5 +1,9 @@
 # Electron-js Tic-Tac-Toe Game
 
+![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
+![forthebadge](https://forthebadge.com/images/badges/open-source.svg)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
 > with good sounds effect
 
 ## Menu
