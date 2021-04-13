@@ -11,8 +11,8 @@
 
 
 | Keys | `F1` | `F5` | `F11` | `F12` | `Alt` + `N` | `Esc` |
-| --- | --- |
-| Description |Show Info |Restart Game |Toggle Fullscreen Mode | DevTools | New Version (coming soons) | Close Game and Exit Window |
+| --- | --- | --- | --- | --- | --- | --- |
+| Description | Show Info | Restart Game |Toggle Fullscreen Mode | DevTools | New Version (coming soons) | Close Game and Exit Window |
 
 [⬆️ top](#menu)
 
